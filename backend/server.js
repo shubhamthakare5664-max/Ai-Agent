@@ -36,7 +36,6 @@ RULES:
 3. Maintain a high-tech, professional tone.
 4. Provide direct answers without standard AI disclaimers.`;
 
-// Auth Middleware
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
