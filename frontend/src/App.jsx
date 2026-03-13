@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { 
   Send, User, Activity, ShieldCheck, 
   MessageSquarePlus, Compass, Zap, 
-  Lock, Mail, LogOut, Key
+  Lock, Mail, LogOut, Key, Menu, X
 } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import './App.css';
@@ -19,6 +19,7 @@ function App() {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const viewportRef = useRef(null);
 
   useEffect(() => {
@@ -136,12 +137,17 @@ function App() {
   return (
     <div className="app-wrapper">
       <div className="content-container">
-        <aside className="glass-sidebar">
-          <div className="brand">
-            <div className="icon-box" style={{ background: 'var(--primary)', color: '#050b18' }}>
-              <Zap size={20} />
+        <aside className={`glass-sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
+          <div className="sidebar-header">
+            <div className="brand">
+              <div className="icon-box" style={{ background: 'var(--primary)', color: '#050b18' }}>
+                <Zap size={20} />
+              </div>
+              <h1>HEALTH_AI</h1>
             </div>
-            <h1>HEALTH_AI</h1>
+            <button className="close-sidebar-btn" onClick={() => setSidebarOpen(false)}>
+              <X size={24} />
+            </button>
           </div>
 
           <nav className="nav-section">
@@ -172,7 +178,12 @@ function App() {
           </div>
         </aside>
 
+        {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)}></div>}
+
         <main className="chat-canvas">
+          <button className="mobile-menu-btn" onClick={() => setSidebarOpen(true)}>
+            <Menu size={24} />
+          </button>
           <div className="chat-viewport" ref={viewportRef}>
             {messages.map((m, i) => (
               <div key={i} className={`cyber-msg ${m.role}`}>

@@ -29,13 +29,35 @@
   display: flex;
   flex-direction: column;
   padding: 2.5rem 1.5rem;
+  position: relative;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.close-sidebar-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.close-sidebar-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 4rem;
 }
 
 .brand h1 {
@@ -46,6 +68,30 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -0.5px;
+}
+
+.mobile-menu-btn {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 0.75rem;
+  color: var(--text-main);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s;
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary);
+}
+
+.sidebar-overlay {
+  display: none;
 }
 
 .nav-section {
@@ -385,7 +431,135 @@
 }
 
 @media (max-width: 900px) {
-  .glass-sidebar { display: none; }
+  .glass-sidebar { 
+    display: none; 
+  }
+  
+  .glass-sidebar.sidebar-open {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
+    border-right: none;
+  }
+  
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .chat-canvas {
+    padding: 1rem;
+  }
+  
+  .chat-viewport {
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .cyber-msg {
+    gap: 1rem;
+  }
+  
+  .msg-bubble {
+    max-width: 85%;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .input-dock {
+    padding: 1rem;
+    margin: 0.5rem auto;
+  }
+  
+  .input-dock input {
+    font-size: 1rem;
+  }
+  
+  .circle-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 600px) {
+  .chat-canvas {
+    padding: 0.5rem;
+  }
+  
+  .chat-viewport {
+    gap: 0.75rem;
+  }
+  
+  .cyber-msg {
+    gap: 0.75rem;
+  }
+  
+  .msg-bubble {
+    max-width: 90%;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .avatar-sphere {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .avatar-sphere svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .input-dock {
+    padding: 0.75rem;
+  }
+  
+  .input-dock input {
+    font-size: 0.9rem;
+  }
+  
+  .circle-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .circle-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    margin: 1rem;
+    padding: 2rem 1.5rem;
+  }
+  
+  .brand-header h1 {
+    font-size: 1.1rem;
+  }
+  
+  .input-field {
+    padding: 0.6rem 1rem;
+  }
+  
+  .auth-submit {
+    padding: 0.875rem;
+    font-size: 0.9rem;
+  }
 }
 
 /* Cyber Toast Styles */

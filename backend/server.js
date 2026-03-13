@@ -79,6 +79,8 @@ app.post("/api/login", async (req, res) => {
   res.json({ token, name: user.name });
 });
 
+// Chat Endpoint - Protected
+//comment
 app.post("/api/chat", authenticateToken, async (req, res) => {
   try {
     const { message, history } = req.body;
