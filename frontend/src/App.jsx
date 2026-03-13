@@ -41,7 +41,7 @@ function App() {
     const loadingToast = toast.loading(authMode === 'login' ? 'Authenticating...' : 'Registering...');
     
     try {
-      const { data } = await axios.post(`http://localhost:5000${endpoint}`, authData);
+      const { data } = await axios.post(`https://ai-agent-1-crzu.onrender.com${endpoint}`, authData);
       toast.dismiss(loadingToast);
       
       if (authMode === 'login') {
@@ -76,7 +76,7 @@ function App() {
 
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.post('http://localhost:5000/api/chat', 
+      const { data } = await axios.post('https://ai-agent-1-crzu.onrender.com/api/chat', 
         { message: input, history: messages },
         { headers: { Authorization: `Bearer ${token}` } }
       );
