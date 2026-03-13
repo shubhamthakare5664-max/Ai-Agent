@@ -28,7 +28,6 @@ const saveUsers = (users) => fs.writeFileSync(USERS_FILE, JSON.stringify(users, 
 // Initialize Gemini
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
-// System prompt - Strictly healthcare-focused
 const systemPrompt = `You are HealthBuddy, a highly advanced and specialized healthcare AI. 
 CORE DOMAIN: HEALTHCARE, WELLNESS, AND MEDICINE ONLY.
 RULES:
